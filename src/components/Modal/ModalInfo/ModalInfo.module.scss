@@ -1,0 +1,15 @@
+%ColorGreen {
+  color: green;
+}
+.modalTitle {
+  @extend %ColorGreen;
+}
+.modalSubTitle {
+  @extend %ColorGreen;
+  margin: 20px 0;
+}
+.modalFooter {
+  button {
+    @extend %ColorGreen;
+  }
+}
