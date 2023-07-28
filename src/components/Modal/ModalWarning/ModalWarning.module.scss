@@ -1,0 +1,18 @@
+%ColorRed {
+  color: red;
+}
+.modalTitle {
+  @extend %ColorRed;
+}
+.modalSubTitle {
+  @extend %ColorRed;
+  margin: 20px 0;
+}
+.modalFooter {
+  button {
+    @extend %ColorRed;
+    &:last-child {
+      margin: 0 0 0 10px;
+    }
+  }
+}
