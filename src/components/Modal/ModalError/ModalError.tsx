@@ -1,7 +1,13 @@
-import react from "react";
 import s from "./ModalError.module.scss";
+import { infoData } from "../../../types";
 
-const ModalError = (props: any) => {
+type Props = {
+  data: infoData;
+  handleCloseModal: () => void;
+  handleCancel: () => void;
+};
+
+const ModalError = (props: Props) => {
   const { data, handleCloseModal, handleCancel } = props;
   return (
     <>
