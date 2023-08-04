@@ -1,9 +1,8 @@
 import { modalMapping } from "../components/Modal/Modal";
-import { Content } from "../types";
 
 class ModalModule {
-  component: React.ElementType | React.ReactNode = (<></>);
-  public setType(type: Content) {
+  component = (<></>);
+  setType(type) {
     this.component = modalMapping[type];
   }
 }
