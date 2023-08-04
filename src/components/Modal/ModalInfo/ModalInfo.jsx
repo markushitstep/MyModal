@@ -1,12 +1,6 @@
 import s from "./ModalInfo.module.scss";
-import { infoData } from "../../../types";
 
-type Props = {
-  data: infoData;
-  handleCloseModal: () => void;
-};
-
-const ModalInfo = (props: Props) => {
+const ModalInfo = (props) => {
   const { data, handleCloseModal } = props;
   return (
     <>

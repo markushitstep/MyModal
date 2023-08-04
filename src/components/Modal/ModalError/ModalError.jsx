@@ -1,13 +1,6 @@
-import s from "./ModalWarning.module.scss";
-import { infoData } from "../../../types";
+import s from "./ModalError.module.scss";
 
-type Props = {
-  data: infoData;
-  handleCloseModal: () => void;
-  handleCancel: () => void;
-};
-
-const ModalWarning = (props: Props) => {
+const ModalError = (props) => {
   const { data, handleCloseModal, handleCancel } = props;
   return (
     <>
@@ -21,4 +14,4 @@ const ModalWarning = (props: Props) => {
   );
 };
 
-export default ModalWarning;
+export default ModalError;

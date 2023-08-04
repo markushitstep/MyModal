@@ -1,16 +1,20 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import Modal from "./components/Modal/Modal";
 import { Content } from "./types";
+import modalModule from "./assets/ModalModule";
 
 const infoData = {
   title: "Info",
   subTitle:
     "Ipsum aliquet nisi, hendrerit rhoncus quam tortor, maecenas faucibus. Tincidunt aliquet sit vel, venenatis nulla. Integer bibendum turpis convallis...",
+  isData: true,
 };
 
-const App: FC = () => {
-  const [activeInfoModal, setActiveInfoModal] = useState<boolean>(false);
+const App = () => {
+  const [activeInfoModal, setActiveInfoModal] = useState(false);
   const typeContent = Content.Warning;
+
+  modalModule.setType(infoData.title);
 
   const handleOpenModal = () => {
     setActiveInfoModal(true);
