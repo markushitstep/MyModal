@@ -1,41 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./components/Modal/Modal";
-import { Content } from "./types";
-import modalModule from "./assets/ModalModule";
+import { getModalData } from "./services";
+import ModalModule from "./assets/ModalModule";
 
-const infoData = {
-  title: "Info",
-  subTitle:
-    "Ipsum aliquet nisi, hendrerit rhoncus quam tortor, maecenas faucibus. Tincidunt aliquet sit vel, venenatis nulla. Integer bibendum turpis convallis...",
-  isData: true,
-};
-
+const modal = new ModalModule();
 const App = () => {
-  const [activeInfoModal, setActiveInfoModal] = useState(false);
-  const typeContent = Content.Warning;
+  const [activeModal, setActiveModal] = useState(false);
 
-  modalModule.setType(infoData.title);
+  useEffect(() => {
+    getModalData()
+      .then((data) => {
+        modal.setType(data.info.type);
+        modal.setProps({
+          title: data.info.title,
+          subTitle: data.info.subTitle,
+          handleClickOk: () => {
+            console.log("modal info");
+            setActiveModal(false);
+          },
+        });
+      })
+      .catch((error) => {
+        modal.setType("Error");
+        modal.setProps({
+          title: error,
+          subTitle: `${error}, try again later`,
+          handleClickOk: () => {
+            console.log("modal error");
+            setActiveModal(false);
+          },
+          handleCloseModal: () => {
+            console.log("modal error");
+            setActiveModal(false);
+          },
+        });
+      });
+  }, []);
 
-  const handleOpenModal = () => {
-    setActiveInfoModal(true);
+  const handleOpenInfoModal = () => {
+    setActiveModal(true);
   };
-  const handleCloseModal = () => {
-    setActiveInfoModal(false);
-  };
-  const handleCancel = () => {
-    console.log("Redirect to home page");
-  };
+
   return (
     <div>
-      <button onClick={handleOpenModal}>open modal</button>
-      <Modal
-        active={activeInfoModal}
-        //setActive={setActiveInfoModal}
-        data={infoData}
-        typeContent={typeContent}
-        handleCloseModal={handleCloseModal}
-        handleCancel={handleCancel}
-      />
+      <div>
+        <button onClick={handleOpenInfoModal}>open info modal</button>
+      </div>
+      {modal.getComponent() && (
+        <Modal active={activeModal} ModalComponent={modal.getComponent()} />
+      )}
     </div>
   );
 };

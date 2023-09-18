@@ -1,21 +1,9 @@
 import React from "react";
 import s from "./Modal.module.scss";
 import c from "classnames";
-import { Content } from "../../types";
-import ModalInfo from "./ModalInfo/ModalInfo";
-import ModalError from "./ModalError/ModalError";
-import ModalWarning from "./ModalWarning/ModalWarning";
-
-export const modalMapping = {
-  [Content.Info]: ModalInfo,
-  [Content.Warning]: ModalWarning,
-  [Content.Error]: ModalError,
-};
 
 const Modal = (props) => {
-  const { active, data, typeContent, handleCloseModal, handleCancel } = props;
-
-  const ModalComponent = () => modalMapping[typeContent];
+  const { active, ModalComponent } = props;
 
   return (
     <div
@@ -24,9 +12,7 @@ const Modal = (props) => {
         [s.modalUnActive]: !active,
       })}
     >
-      <div className={s.modalContent}>
-        <ModalComponent />
-      </div>
+      <div className={s.modalContent}>{ModalComponent}</div>
     </div>
   );
 };
